@@ -1,0 +1,27 @@
+# Development
+.DS_Store
+*.log
+*.swp
+*.swo
+*~
+
+# Editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS
+Thumbs.db
+.Spotlight-V100
+.Trashes
+
+# Testing
+.pytest_cache/
+__pycache__/
+*.pyc
+
+# Temporary files
+tmp/
+temp/
+*.tmp
