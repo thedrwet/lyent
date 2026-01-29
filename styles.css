@@ -29,6 +29,23 @@ body {
     overflow-x: hidden;
 }
 
+/* Skip to main content link for accessibility */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 8px 16px;
+    text-decoration: none;
+    z-index: 2000;
+    border-radius: 0 0 4px 0;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -37,7 +54,6 @@ body {
 
 /* Navigation */
 .navbar {
-    background: var(--white);
     padding: 1rem 0;
     position: fixed;
     width: 100%;
@@ -56,6 +72,7 @@ body {
 
 .nav-brand h1 {
     font-size: 1.8rem;
+    color: var(--primary-color);
     background: var(--gradient-2);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -90,8 +107,8 @@ body {
 
 .btn-contact {
     background: var(--gradient-2);
-    color: var(--white) !important;
-    padding: 0.6rem 1.5rem !important;
+    color: var(--white);
+    padding: 0.6rem 1.5rem;
     border-radius: 25px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -103,7 +120,7 @@ body {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: var(--gradient-1);
     padding: 180px 0 120px;
     position: relative;
     overflow: hidden;
@@ -359,6 +376,7 @@ body {
 .footer-section h3 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
+    color: var(--primary-color);
     background: var(--gradient-2);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -400,6 +418,17 @@ body {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
 }
 
