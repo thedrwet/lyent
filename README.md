@@ -8,9 +8,20 @@ This site is automatically deployed to GitHub Pages when changes are pushed to t
 
 **Live Site:** https://thedrwet.github.io/lyent/
 
+### Initial Setup (Required)
+
+**⚠️ If you're experiencing deployment issues, you need to enable GitHub Pages first!**
+
+Quick setup:
+1. Go to **Settings** → **Pages** 
+2. Set **Source** to "GitHub Actions"
+3. Save and push to `main` branch
+
+📖 **[Read the complete deployment guide →](DEPLOYMENT.md)** for detailed step-by-step instructions and troubleshooting.
+
 ### Deployment Process
 
-The site uses GitHub Actions for continuous deployment:
+After initial setup, the site uses GitHub Actions for continuous deployment:
 - Push changes to the `main` branch
 - GitHub Actions workflow (`.github/workflows/static.yml`) automatically deploys the site
 - Changes are live within minutes
@@ -21,6 +32,17 @@ You can also trigger a manual deployment:
 1. Go to the [Actions tab](https://github.com/thedrwet/lyent/actions)
 2. Select "Deploy static content to Pages"
 3. Click "Run workflow"
+
+### Troubleshooting
+
+**Deployment fails with "Get Pages site failed" error:**
+- **Cause:** GitHub Pages is not enabled or not configured to use GitHub Actions
+- **Solution:** Follow the [Initial Setup](#initial-setup-required) instructions above
+
+**Deployment succeeds but site doesn't update:**
+- Clear your browser cache
+- Check that you're viewing the correct URL: https://thedrwet.github.io/lyent/
+- Wait a few minutes for GitHub's CDN to update
 
 ## 📁 Project Structure
 
