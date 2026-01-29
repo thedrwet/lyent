@@ -27,6 +27,15 @@ body {
     color: var(--text-dark);
     background-color: var(--white);
     overflow-x: hidden;
+    transition: opacity 0.3s ease;
+}
+
+body.loading {
+    opacity: 0;
+}
+
+body.loaded {
+    opacity: 1;
 }
 
 /* Skip to main content link for accessibility */
@@ -62,6 +71,13 @@ body {
     box-shadow: var(--shadow-sm);
     backdrop-filter: blur(10px);
     background: rgba(255, 255, 255, 0.95);
+    transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+    padding: 0.5rem 0;
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: var(--shadow-md);
 }
 
 .navbar .container {
@@ -125,6 +141,8 @@ body {
     position: relative;
     overflow: hidden;
     margin-top: 70px;
+    transition: transform 0.1s ease-out;
+    will-change: transform;
 }
 
 .hero::before {
@@ -177,13 +195,195 @@ body {
     text-decoration: none;
     font-weight: 600;
     font-size: 1.1rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s ease;
     animation: fadeInUp 0.8s ease 0.4s both;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(37, 99, 235, 0.1);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn-primary:hover::before {
+    width: 300px;
+    height: 300px;
 }
 
 .btn-primary:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Services Dropdown */
+.services-dropdown-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.services-dropdown {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    background: var(--white);
+    border-radius: 15px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 10px 40px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 100;
+    min-width: 380px;
+    max-height: 500px;
+    overflow: visible;
+}
+
+.services-dropdown::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 8px solid var(--white);
+    display: none;
+}
+
+.services-dropdown-wrapper:hover .services-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.dropdown-header {
+    background: var(--gradient-2);
+    color: var(--white);
+    padding: 1rem 1.5rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.dropdown-services {
+    list-style: none;
+    padding: 0.5rem;
+    margin: 0;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.dropdown-services li {
+    margin: 0;
+}
+
+.dropdown-services li a {
+    display: flex;
+    align-item.2rem 1s: center;
+    gap: 1rem;
+    padding: 1rem;
+    text-decoration: none;
+    color: var(--text-dark);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.dropdown-services li a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 3px;
+    background: var(--gradient-2);
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+}
+
+.dropdown-services li a:hover::before {
+    transform: scaleY(1);
+}
+
+.dropdown-services li a:hover {
+    background: var(--light-bg);
+    transform: translateX(5px);
+}
+
+.dropdown-icon {
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.dropdown-services li a:hover .dropdown-icon {
+    transform: scale(1.1) rotate(5deg);
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+}
+
+.dropdown-service-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    flex: 1;
+}
+
+.dropdown-service-info strong {
+    color: var(--text-dark);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.dropdown-service-info small {
+    color: var(--text-light);
+    font-size: 0.85rem;
+}
+
+/* Stagger animation for dropdown items */
+.services-dropdown-wrapper:hover .dropdown-services li:nth-child(1) a {
+    animation: slideInLeft 0.3s ease 0.1s both;
+}
+
+.services-dropdown-wrapper:hover .dropdown-services li:nth-child(2) a {
+    animation: slideInLeft 0.3s ease 0.2s both;
+}
+
+.services-dropdown-wrapper:hover .dropdown-services li:nth-child(3) a {
+    animation: slideInLeft 0.3s ease 0.3s both;
+}
+
+.services-dropdown-wrapper:hover .dropdown-services li:nth-child(4) a {
+    animation: slideInLeft 0.3s ease 0.4s both;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 /* Services Section */
@@ -216,9 +416,16 @@ body {
 .service-card {
     background: var(--white);
     padding: 2.5rem;
-    border-radius: 15px;
-    box-shadow: var(--shadow-md);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radiuall 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.service-card.animate-in {
+    opacity: 1;
+    transform: translateY(0)sform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
     overflow: hidden;
 }
@@ -247,6 +454,13 @@ body {
 .service-icon {
     width: 60px;
     height: 60px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.service-card:hover .service-icon {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
     background: var(--gradient-1);
     border-radius: 12px;
     display: flex;
@@ -296,8 +510,15 @@ body {
 /* Additional Services */
 .additional-services {
     padding: 100px 0;
-    background: var(--white);
+    background: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 2px solid transparent;
+    opacity: 0;
+    transform: translateY(50px);
 }
+
+.additional-card.animate-in {
+    opacity: 1;
+    transform: translateY(0)
 
 .additional-grid {
     display: grid;
@@ -309,6 +530,12 @@ body {
 .additional-card {
     background: var(--light-bg);
     padding: 2rem;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.additional-card:hover .additional-icon {
+    transform: scale(1.2) rotate(10deg);
     border-radius: 12px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 2px solid transparent;
@@ -420,6 +647,215 @@ body {
         transform: translateY(0);
     }
 }
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+/* Scroll Progress Bar */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: var(--gradient-2);
+    z-index: 9999;
+    transition: width 0.1s ease;
+    box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
+}
+
+/* Ripple Effect */
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    transform: scale(0);
+    animation: ripple-animation 0.6s ease-out;
+    pointer-events: none;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Sparkle Effect */
+.sparkle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: sparkle-animation 1s ease-out forwards;
+}
+
+@keyframes sparkle-animation {
+    0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 1;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1) rotate(180deg);
+        opacity: 0;
+    }
+}
+
+/* Cursor Trail */
+.cursor-trail {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0.6;
+    transition: opacity 0.5s ease;
+    z-index: 9998;
+}
+
+/* Gradient Text Animation */
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+.section-title.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section-subtitle {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin-bottom: 4rem;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease 0.2s;
+}
+
+.section-subtitle.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Enhanced hover effects */
+.service-features li {
+    padding: 0.5rem 0;
+    color: var(--text-light);
+    position: relative;
+    padding-left: 1.5rem;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.service-card:hover .service-features li {
+    opacity: 1;
+    transform: translateX(5px);
+}
+
+.service-features li:nth-child(1) { transition-delay: 0.05s; }
+.service-features li:nth-child(2) { transition-delay: 0.1s; }
+.service-features li:nth-child(3) { transition-delay: 0.15s; }
+.service-features li:nth-child(4) { transition-delay: 0.2s; }
+
+/* Glowing effect on hover */
+.service-card:hover {
+    box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2), 0 0 0 1px rgba(102, 126, 234, 0.1);
+}
+
+.additional-card:hover {
+    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.15);
+    background: linear-gradient(135deg, var(--light-bg) 0%, rgba(248, 250, 252, 0.5) 100%);
+}
+
+/* Loading animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Background animation for hero */
+@keyframes background-pan {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.hero {
+    background: var(--gradient-1);
+    background-size: 200% 200%;
+    animation: background-pan 15s ease infinite;
+}
+
+/* Stagger animation for cards */
+.service-card:nth-child(1) { animation-delay: 0.1s; }
+.service-card:nth-child(2) { animation-delay: 0.2s; }
+.service-card:nth-child(3) { animation-delay: 0.3s; }
+.service-card:nth-child(4) { animation-delay: 0.4s; }
+
+.additional-card:nth-child(1) { animation-delay: 0.1s; }
+.additional-card:nth-child(2) { animation-delay: 0.2s; }
+.additional-card:nth-child(3) { animation-delay: 0.3s; }
+.additional-card:nth-child(4) { animation-delay: 0.4s; }
+.additional-card:nth-child(5) { animation-delay: 0.5s; }
+.additional-card:nth-child(6) { animation-delay: 0.6s; }
 
 /* Respect user's motion preferences */
 @media (prefers-reduced-motion: reduce) {
