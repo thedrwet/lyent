@@ -2,6 +2,16 @@
 
 A professional services webpage showcasing cloud solutions, IT consulting, quality assurance & testing, and data analytics services.
 
+---
+
+## 🚨 TO DEPLOY THIS PROJECT
+
+**→ [Click here for deployment instructions](ENABLE_DEPLOYMENT.md) ←**
+
+Your deployment workflow is ready, but you need to **enable GitHub Pages** (takes 2 minutes).
+
+---
+
 ## 🚀 Deployment
 
 This site is automatically deployed to GitHub Pages when changes are pushed to the `main` branch.
